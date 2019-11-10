@@ -155,158 +155,165 @@ NOT y -> i";
         {
             using (StringReader reader = new StringReader(example))
             {
-                var wires = new Dictionary<string, Wire>();
-
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    Console.WriteLine(line);
-                    string[] parts = line.Split();
-                    if (parts.Length == 3)  // Assignment
-                    {
-                        // 456 -> y
-                        Wire rightSide;
-                        if (wires.ContainsKey(parts[2]))
-                        {
-                            rightSide = wires[parts[2]];
-                        }
-                        else
-                        {
-                            rightSide = new Wire() { identifier = parts[2] };
-                            wires[parts[2]] = rightSide;
-                        }
-
-                        Signal leftSide;
-                        if (int.TryParse(parts[0], out int value))
-                        {
-                            leftSide = new Value() { value = (uint)value };
-                        }
-                        else
-                        {
-                            if (wires.ContainsKey(parts[0]))
-                            {
-                                leftSide = wires[parts[0]];
-                            }
-                            else
-                            {
-                                leftSide = new Wire { identifier = parts[0] };
-                                wires[parts[0]] = (Wire)leftSide;
-                            }
-                        }
-
-                        rightSide.source = leftSide;
-                    }
-                    else if (parts.Length == 5)  // Grid
-                    {
-                        // x AND y -> d
-                        // 0     2    4
-                        string wireId = parts[4];
-                        Wire result;
-                        if (wires.ContainsKey(wireId))
-                        {
-                            result = wires[wireId];
-                        }
-                        else
-                        {
-                            result = new Wire() { identifier = wireId };
-                            wires[wireId] = result;
-                        }
-
-                        Signal leftSide;
-                        string leftStr = parts[0];
-                        if (int.TryParse(leftStr, out int leftValue))
-                        {
-                            leftSide = new Value() { value = (uint)leftValue };
-                        }
-                        else
-                        {
-                            if (wires.ContainsKey(leftStr))
-                            {
-                                leftSide = wires[leftStr];
-                            }
-                            else
-                            {
-                                leftSide = new Wire { identifier = leftStr };
-                                wires[leftStr] = (Wire)leftSide;
-                            }
-                        }
-
-                        //operator
-                        Func<Signal, Signal, Signal> oper = mFunctions[parts[1]];
-
-                        Signal rightSide;
-                        string rightStr = parts[0];
-                        if (int.TryParse(rightStr, out int rightValue))
-                        {
-                            rightSide = new Value() { value = (uint)rightValue };
-                        }
-                        else
-                        {
-                            if (wires.ContainsKey(rightStr))
-                            {
-                                rightSide = wires[rightStr];
-                            }
-                            else
-                            {
-                                rightSide = new Wire { identifier = rightStr };
-                                wires[rightStr] = (Wire)rightSide;
-                            }
-                        }
-
-                        result.source = new Gate() { isUnary = false, left = leftSide, right = rightSide, oper = oper };
-                    }
-                    else if (parts.Length == 4)  // Grid
-                    {
-                        // NOT x -> h
-                        //     1    3
-
-                        string wireId = parts[3];
-                        Wire result;
-                        if (wires.ContainsKey(wireId))
-                        {
-                            result = wires[wireId];
-                        }
-                        else
-                        {
-                            result = new Wire() { identifier = wireId };
-                            wires[wireId] = result;
-                        }
-
-                        //operator
-                        Func<Signal, Signal, Signal> oper = mFunctions[parts[0]];
-
-                        Signal rightSide;
-                        string rightStr = parts[1];
-                        if (int.TryParse(rightStr, out int rightValue))
-                        {
-                            rightSide = new Value() { value = (uint)rightValue };
-                        }
-                        else
-                        {
-                            if (wires.ContainsKey(rightStr))
-                            {
-                                rightSide = wires[rightStr];
-                            }
-                            else
-                            {
-                                rightSide = new Wire { identifier = rightStr };
-                                wires[rightStr] = (Wire)rightSide;
-                            }
-                        }
-
-                        result.source = new Gate() { isUnary = true, left = null, right = rightSide, oper = oper };
-
-                    }
-                    else
-                    {
-                        throw new NotImplementedException();
-                    }
-                }
+                Dictionary<string, Wire> wires = parseInstructions(reader);
                 foreach (var wire in wires)
                 {
                     Console.WriteLine($"{wire}");
                 }
             }
+        }
+
+        private Dictionary<string, Wire> parseInstructions(StringReader reader)
+        {
+            var wires = new Dictionary<string, Wire>();
+
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                Console.WriteLine(line);
+                string[] parts = line.Split();
+                if (parts.Length == 3)  // Assignment
+                {
+                    // 456 -> y
+                    Wire rightSide;
+                    if (wires.ContainsKey(parts[2]))
+                    {
+                        rightSide = wires[parts[2]];
+                    }
+                    else
+                    {
+                        rightSide = new Wire() { identifier = parts[2] };
+                        wires[parts[2]] = rightSide;
+                    }
+
+                    Signal leftSide;
+                    if (int.TryParse(parts[0], out int value))
+                    {
+                        leftSide = new Value() { value = (uint)value };
+                    }
+                    else
+                    {
+                        if (wires.ContainsKey(parts[0]))
+                        {
+                            leftSide = wires[parts[0]];
+                        }
+                        else
+                        {
+                            leftSide = new Wire { identifier = parts[0] };
+                            wires[parts[0]] = (Wire)leftSide;
+                        }
+                    }
+
+                    rightSide.source = leftSide;
+                }
+                else if (parts.Length == 5)  // Grid
+                {
+                    // x AND y -> d
+                    // 0     2    4
+                    string wireId = parts[4];
+                    Wire result;
+                    if (wires.ContainsKey(wireId))
+                    {
+                        result = wires[wireId];
+                    }
+                    else
+                    {
+                        result = new Wire() { identifier = wireId };
+                        wires[wireId] = result;
+                    }
+
+                    Signal leftSide;
+                    string leftStr = parts[0];
+                    if (int.TryParse(leftStr, out int leftValue))
+                    {
+                        leftSide = new Value() { value = (uint)leftValue };
+                    }
+                    else
+                    {
+                        if (wires.ContainsKey(leftStr))
+                        {
+                            leftSide = wires[leftStr];
+                        }
+                        else
+                        {
+                            leftSide = new Wire { identifier = leftStr };
+                            wires[leftStr] = (Wire)leftSide;
+                        }
+                    }
+
+                    //operator
+                    Func<Signal, Signal, Signal> oper = mFunctions[parts[1]];
+
+                    Signal rightSide;
+                    string rightStr = parts[0];
+                    if (int.TryParse(rightStr, out int rightValue))
+                    {
+                        rightSide = new Value() { value = (uint)rightValue };
+                    }
+                    else
+                    {
+                        if (wires.ContainsKey(rightStr))
+                        {
+                            rightSide = wires[rightStr];
+                        }
+                        else
+                        {
+                            rightSide = new Wire { identifier = rightStr };
+                            wires[rightStr] = (Wire)rightSide;
+                        }
+                    }
+
+                    result.source = new Gate() { isUnary = false, left = leftSide, right = rightSide, oper = oper };
+                }
+                else if (parts.Length == 4)  // Grid
+                {
+                    // NOT x -> h
+                    //     1    3
+
+                    string wireId = parts[3];
+                    Wire result;
+                    if (wires.ContainsKey(wireId))
+                    {
+                        result = wires[wireId];
+                    }
+                    else
+                    {
+                        result = new Wire() { identifier = wireId };
+                        wires[wireId] = result;
+                    }
+
+                    //operator
+                    Func<Signal, Signal, Signal> oper = mFunctions[parts[0]];
+
+                    Signal rightSide;
+                    string rightStr = parts[1];
+                    if (int.TryParse(rightStr, out int rightValue))
+                    {
+                        rightSide = new Value() { value = (uint)rightValue };
+                    }
+                    else
+                    {
+                        if (wires.ContainsKey(rightStr))
+                        {
+                            rightSide = wires[rightStr];
+                        }
+                        else
+                        {
+                            rightSide = new Wire { identifier = rightStr };
+                            wires[rightStr] = (Wire)rightSide;
+                        }
+                    }
+
+                    result.source = new Gate() { isUnary = true, left = null, right = rightSide, oper = oper };
+
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+
+            return wires;
         }
 
         [TestMethod]
@@ -323,6 +330,8 @@ NOT y -> i";
                     //1 AND lu -> lv  //lc, lu
                     //lr AND lt -> lu //l4, lt, lc
                     // no
+                    Dictionary<string, Wire> wires = parseInstructions(reader);
+                    //Console.WriteLine($"{wires["a"]}"); //Too heavy!
                 }
             }
   
