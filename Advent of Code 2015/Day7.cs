@@ -14,11 +14,18 @@ namespace Advent_of_Code_2015
         abstract class Signal
         {
             public abstract override string ToString();
+
+            public abstract uint Eval();
         }
 
         class Value : Signal
         {
             public uint value;
+
+            public override uint Eval()
+            {
+                return value;
+            }
 
             public override string ToString()
             {
@@ -31,6 +38,16 @@ namespace Advent_of_Code_2015
             public string identifier;
             public Signal source;
 
+            public override uint Eval()
+            {
+                uint result = source.Eval();
+                if (source.GetType() != typeof(Value))
+                {
+                    source = new Value() { value = result };
+                }
+                return result;
+            }
+
             public override string ToString()
             {
                 return $"Wire(id={identifier}, source={source})";
@@ -39,10 +56,15 @@ namespace Advent_of_Code_2015
 
         class Gate : Signal
         {
-            public Func<Signal, Signal, Signal> oper;
+            public Func<Signal, Signal, uint> oper;
             public bool isUnary = false;
             public Signal left = null;
             public Signal right = null;
+
+            public override uint Eval()
+            {
+                return isProvider() ? oper(left, right) : 0;
+            }
 
             public override string ToString()
             {
@@ -61,77 +83,35 @@ namespace Advent_of_Code_2015
             }
         }
 
-
-
-        Signal And(Signal left, Signal right)
+        uint And(Signal left, Signal right)
         {
-            Signal result = null;
-            //TODO how to parse tree until e.g. leftValue is found?
-            if (left is Value && right is Value)
-            {
-                Value leftValue = (Value)left;
-                Value rightValue = (Value)right;
-                result = new Value() { value = leftValue.value & rightValue.value };
-            }
-            return result;
+            return left.Eval() & right.Eval();
         }
 
-        Signal Lshift(Signal left, Signal right)
+        uint Lshift(Signal left, Signal right)
         {
-            Signal result = null;
-            //TODO how to parse tree until e.g. leftValue is found?
-            if (left is Value && right is Value)
-            {
-                Value leftValue = (Value)left;
-                Value rightValue = (Value)right;
-    
-                result = new Value() { value = (leftValue.value << (int)rightValue.value) };
-            }
-            return result;
+            return left.Eval() << (int) right.Eval();
         }
 
-        Signal Rshift(Signal left, Signal right)
+        uint Rshift(Signal left, Signal right)
         {
-            Signal result = null;
-            //TODO how to parse tree until e.g. leftValue is found?
-            if (left is Value && right is Value)
-            {
-                Value leftValue = (Value)left;
-                Value rightValue = (Value)right;
-
-                result = new Value() { value = (leftValue.value >> (int)rightValue.value) };
-            }
-            return result;
+            return left.Eval() >> (int)right.Eval();
         }
 
-        Signal Or(Signal left, Signal right)
+        uint Or(Signal left, Signal right)
         {
-            Signal result = null;
-            //TODO how to parse tree until e.g. leftValue is found?
-            if (left is Value && right is Value)
-            {
-                Value leftValue = (Value)left;
-                Value rightValue = (Value)right;
-                result = new Value() { value = leftValue.value | rightValue.value };
-            }
-            return result;
+            return left.Eval() | right.Eval();
         }
 
-        Signal Not(Signal left, Signal right)
+        uint Not(Signal left, Signal right)
         {
-            Signal result = null;
-            //TODO how to parse tree until e.g. leftValue is found?
-            if (right is Value rightValue)
-            {
-                result = new Value() { value = ~rightValue.value };
-            }
-            return result;
+            return ~right.Eval() & 0xFFFFu;
         }
 
-        Dictionary<string, Func<Signal, Signal, Signal>> mFunctions;
+        Dictionary<string, Func<Signal, Signal, uint>> mFunctions;
         public Day7()
         {
-            mFunctions = new Dictionary<string, Func<Signal, Signal, Signal>>()
+            mFunctions = new Dictionary<string, Func<Signal, Signal, uint>>()
             {
                 {"AND", And},
                 {"LSHIFT", Lshift },
@@ -156,9 +136,12 @@ NOT y -> i";
             using (StringReader reader = new StringReader(example))
             {
                 Dictionary<string, Wire> wires = parseInstructions(reader);
-                foreach (var wire in wires)
+                var wireNames = wires.Keys.ToArray<string>();
+                Array.Sort(wireNames);
+
+                foreach (var wire in wireNames)
                 {
-                    Console.WriteLine($"{wire}");
+                    Console.WriteLine($"{wire} -> {wires[wire].Eval()}");
                 }
             }
         }
@@ -170,7 +153,7 @@ NOT y -> i";
             string line;
             while ((line = reader.ReadLine()) != null)
             {
-                Console.WriteLine(line);
+                //Console.WriteLine(line);
                 string[] parts = line.Split();
                 if (parts.Length == 3)  // Assignment
                 {
@@ -242,10 +225,10 @@ NOT y -> i";
                     }
 
                     //operator
-                    Func<Signal, Signal, Signal> oper = mFunctions[parts[1]];
+                    var oper = mFunctions[parts[1]];
 
                     Signal rightSide;
-                    string rightStr = parts[0];
+                    string rightStr = parts[2];
                     if (int.TryParse(rightStr, out int rightValue))
                     {
                         rightSide = new Value() { value = (uint)rightValue };
@@ -283,7 +266,7 @@ NOT y -> i";
                     }
 
                     //operator
-                    Func<Signal, Signal, Signal> oper = mFunctions[parts[0]];
+                    var oper = mFunctions[parts[0]];
 
                     Signal rightSide;
                     string rightStr = parts[1];
@@ -321,18 +304,17 @@ NOT y -> i";
         {
             using (StringReader reader = new StringReader(inputString))
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    //lx -> a
-                    //lw OR lv->lx //lw, lv
-                    //lc LSHIFT 1->lw //lc, lv
-                    //1 AND lu -> lv  //lc, lu
-                    //lr AND lt -> lu //l4, lt, lc
-                    // no
-                    Dictionary<string, Wire> wires = parseInstructions(reader);
-                    //Console.WriteLine($"{wires["a"]}"); //Too heavy!
-                }
+
+                //lx -> a
+                //lw OR lv->lx //lw, lv
+                //lc LSHIFT 1->lw //lc, lv
+                //1 AND lu -> lv  //lc, lu
+                //lr AND lt -> lu //l4, lt, lc
+                // no
+                Dictionary<string, Wire> wires = parseInstructions(reader);
+                //Console.WriteLine($"{wires["a"]}"); //Too heavy!
+                Console.WriteLine($"a -> {wires["a"].Eval()}");
+                
             }
   
             //Console.WriteLine(sum);

@@ -5,3 +5,4 @@
 /.vs
 /Advent of Code 2015/bin/Debug/netcoreapp2.1
 /Advent of Code 2015/obj
+/Advent of Code 2015/bin/Release/netcoreapp2.1
