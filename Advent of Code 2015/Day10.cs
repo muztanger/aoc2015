@@ -13,101 +13,83 @@ namespace Advent_of_Code_2015
     public class Day10
     {
 
- 
+
+        // https://stackoverflow.com/questions/228038/best-way-to-reverse-a-string?page=1&tab=votes#tab-top
+        public static string Reverse(string s)
+        {
+            char[] charArray = s.ToCharArray();
+            Array.Reverse(charArray);
+            return new string(charArray);
+        }
+
+
 
         static string exampleString = @"";
 
         [TestMethod]
         public void Part1Examples()
         {
-            using (StringReader reader = new StringReader(exampleString))
+            /*
+             * 
+    1 becomes 11 (1 copy of digit 1).
+    11 becomes 21 (2 copies of digit 1).
+    21 becomes 1211 (one 2 followed by one 1).
+    1211 becomes 111221 (one 1, one 2, and two 1s).
+    111221 becomes 312211 (three 1s, two 2s, and one 1).
+*/
+            Assert.AreEqual("11", lookAndSay("1"));
+            Assert.AreEqual("21", lookAndSay("11"));
+            Assert.AreEqual("1211", lookAndSay("21"));
+            Assert.AreEqual("111221", lookAndSay("1211"));
+            Assert.AreEqual("312211", lookAndSay("111221"));
+
+        }
+
+        private string lookAndSay(string v)
+        {
+            int last = Int32.Parse(Char.ToString(v.Last()));
+            int count = 0;
+            var result = new StringBuilder();
+            foreach (char c in v.Reverse())
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                int x = Int32.Parse(Char.ToString(c));
+                if (x == last)
                 {
-                    parseLine(line);
+                    count++;
                 }
+                else
+                {
+                    result.Append($"{last}{count}");
+                    count = 1;
+                }
+                last = x;
             }
-
-            int min = shortestPath();
-            Assert.AreEqual(605, min);
-
-        }
-
-        private int shortestPath()
-        {
-            int min = int.MaxValue;
-            //ForAllPermutation(Cities.ToArray(), (vals) =>
-            //{
-            //    int sum = 0;
-            //    string last = null;
-            //    foreach (string city in vals)
-            //    {
-            //        if (last != null)
-            //        {
-            //            sum += Distances[(last, city)];
-            //        }
-            //        last = city;
-            //    }
-            //    min = Math.Min(min, sum);
-            //    //Console.WriteLine($"{String.Join(", ", vals)}: {sum}");
-            //    return false;
-            //});
-            return min;
-        }
-
-        private void parseLine(string line)
-        {
-            var parts = line.Split();
-            var from = parts[0];
-            var to = parts[2];
-            var distanse = Int32.Parse(parts[4]);
-
-            //Cities.Add(from);
-            //Cities.Add(to);
-
-            //Distances[(from, to)] = distanse;
-            //Distances[(to, from)] = distanse;
+            result.Append($"{last}{count}");
+            return Reverse(result.ToString());
         }
 
 
         [TestMethod]
         public void Part1()
         {
-            using (StringReader reader = new StringReader(inputString))
+            string result = "1113122113";
+            for (int i = 0; i < 40; i++)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    parseLine(line);
-                }
+                result = lookAndSay(result);
             }
-
-            int min = shortestPath();
-            Console.WriteLine(min);
+            Console.WriteLine(result.Length);
         }
 
-
-        [TestMethod]
-        public void Part2Examples()
-        {
-
-        }
 
         [TestMethod]
         public void Part2()
         {
-            using (StringReader reader = new StringReader(inputString))
+            string result = "1113122113";
+            for (int i = 0; i < 50; i++)
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    parseLine(line);
-                }
+                result = lookAndSay(result);
             }
-
-            
-
+            Console.WriteLine(result.Length);
         }
 
         static string inputString = @"";
