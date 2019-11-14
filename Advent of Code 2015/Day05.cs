@@ -9,7 +9,7 @@ using System.Linq;
 namespace Advent_of_Code_2015
 {
     [TestClass]
-    public class Day5
+    public class Day05
     {
 
         private HashSet<char> mVowels = new HashSet<char>("aeiou".ToCharArray());

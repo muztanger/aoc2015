@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Advent_of_Code_2015
 {
     [TestClass]
-    public class Day1
+    public class Day01
     {
         [TestMethod]
         public void Examples()

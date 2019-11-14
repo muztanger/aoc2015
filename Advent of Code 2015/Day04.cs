@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Advent_of_Code_2015
 {
     [TestClass]
-    public class Day4
+    public class Day04
     {
 
 

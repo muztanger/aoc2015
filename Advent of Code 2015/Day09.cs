@@ -10,7 +10,7 @@ using System.Runtime.CompilerServices;
 namespace Advent_of_Code_2015
 {
     [TestClass]
-    public class Day9
+    public class Day09
     {
 
         private readonly Dictionary<(string, string), int> Distances = new Dictionary<(string, string), int>();

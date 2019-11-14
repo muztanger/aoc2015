@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Advent_of_Code_2015
 {
     [TestClass]
-    public class Day3
+    public class Day03
     {
         public struct Pos
         {

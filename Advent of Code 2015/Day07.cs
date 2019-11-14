@@ -9,7 +9,7 @@ using System.Linq;
 namespace Advent_of_Code_2015
 {
     [TestClass]
-    public class Day7
+    public class Day07
     {
         abstract class Signal
         {
@@ -109,7 +109,7 @@ namespace Advent_of_Code_2015
         }
 
         Dictionary<string, Func<Signal, Signal, uint>> mFunctions;
-        public Day7()
+        public Day07()
         {
             mFunctions = new Dictionary<string, Func<Signal, Signal, uint>>()
             {

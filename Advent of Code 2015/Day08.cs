@@ -20,7 +20,7 @@ namespace Advent_of_Code_2015
     */
 
     [TestClass]
-    public class Day8
+    public class Day08
     {
         static string CodePath = "..\\..\\..";
         enum State { Char, Escape, Hex };
@@ -79,9 +79,9 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part1Examples()
         {
-            string path = Assembly.GetAssembly(typeof(Day8)).Location;
+            string path = Assembly.GetAssembly(typeof(Day08)).Location;
             //Console.WriteLine(path);
-            using (StreamReader reader = new StreamReader(Path.Combine(path, "day8_part1_examples.txt")))
+            using (StreamReader reader = new StreamReader(Path.Combine(path, "day08_part1_examples.txt")))
             {
                 string line;
                 line = reader.ReadLine();
@@ -106,7 +106,7 @@ namespace Advent_of_Code_2015
         public void Part1()
         {
             int total = 0;
-            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day8_input.txt")))
+            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day08_input.txt")))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
@@ -145,7 +145,7 @@ namespace Advent_of_Code_2015
         public void Part2Examples()
         {
             //Console.WriteLine(path);
-            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day8_part1_examples.txt")))
+            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day08_part1_examples.txt")))
             {
                 /*
                     "" encodes to "\"\"", an increase from 2 characters to 6.
@@ -176,7 +176,7 @@ namespace Advent_of_Code_2015
         public void Part2()
         {
             int total = 0;
-            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day8_input.txt")))
+            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day08_input.txt")))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)

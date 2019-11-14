@@ -9,12 +9,12 @@ using System.Linq;
 namespace Advent_of_Code_2015
 {
     [TestClass]
-    public class Day6
+    public class Day06
     {
 
         private bool[,] mGrid = new bool[1000,1000];
 
-        public Day6()
+        public Day06()
         {
             doAction(0, 0, 999, 999, turnOff);
             doAction(0, 0, 999, 999, zero);
