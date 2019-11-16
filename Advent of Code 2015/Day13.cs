@@ -43,7 +43,7 @@ David would gain 41 happiness units by sitting next to Carol.
             }
         }
 
-        private static int maxScore(HashSet<string> guests, Dictionary<(string, string), int> happiness, StringReader reader)
+        private static int maxScore(HashSet<string> guests, Dictionary<(string, string), int> happiness, StringReader reader, bool addMe = false)
         {
             string line;
             while ((line = reader.ReadLine()) != null)
@@ -56,6 +56,15 @@ David would gain 41 happiness units by sitting next to Carol.
                 guests.Add(who);
                 guests.Add(next);
                 happiness.Add((who, next), points);
+            }
+            if (addMe)
+            {
+                foreach (var guest in guests)
+                {
+                    happiness.Add(("yourself", guest), 0);
+                    happiness.Add((guest, "yourself"), 0);
+                }
+                guests.Add("yourself");
             }
             int max = int.MinValue;
 
@@ -95,7 +104,13 @@ David would gain 41 happiness units by sitting next to Carol.
         [TestMethod]
         public void Part2()
         {
-       
+            var guests = new HashSet<string>();
+            var happiness = new Dictionary<(string, string), int>();
+            using (StringReader reader = new StringReader(inputString))
+            {
+                int max = maxScore(guests, happiness, reader, true);
+                Console.WriteLine(max);
+            }
         }
 
        
