@@ -121,18 +121,7 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds.
             Console.WriteLine($"Longest distance: {d}");
         }
 
-        public class GeneralizedComparer<T> : IComparer<T> where T : IComparable
-        {
-            int IComparer<T>.Compare(T x, T y)
-            {
-                int comp = x.CompareTo(y);
 
-                if (comp != 0)
-                    return comp;
-                else
-                    return 1;
-            }
-        }
 
         [TestMethod]
         public void Part2Examples()

@@ -112,4 +112,17 @@ namespace Advent_of_Code_2015
         }
 
     }
+
+    public class GeneralizedComparer<T> : IComparer<T> where T : IComparable
+    {
+        int IComparer<T>.Compare(T x, T y)
+        {
+            int comp = x.CompareTo(y);
+
+            if (comp != 0)
+                return comp;
+            else
+                return 1;
+        }
+    }
 }
