@@ -41,8 +41,8 @@ namespace Advent_of_Code_2015
 
         private void doAction(int x1, int y1, int x2, int y2, Action<int, int> action)
         {
-            Assert.IsTrue(x1 <= x2);
-            Assert.IsTrue(y1 <= y2);
+            Assert.IsLessThanOrEqualTo(x1, x2);
+            Assert.IsLessThanOrEqualTo(y1, y2);
             for (int x = x1; x <= x2; x++)
             {
                 for (int y = y1; y <= y2; y++)

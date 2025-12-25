@@ -114,7 +114,7 @@ HOH
             {
                 Console.WriteLine("   " + elem);
             }
-            Assert.AreEqual(4, result.Count);
+            Assert.HasCount(4, result);
         }
 
         private static void parse(string example, out Dictionary<string, List<string>> replacements, out HashSet<int> replacementLengths, out string toReplace)
@@ -190,7 +190,7 @@ HOH
                     }
                 }
             }
-            Assert.AreEqual(576, result.Count);
+            Assert.HasCount(576, result);
 
         }
 

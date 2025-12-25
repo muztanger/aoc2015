@@ -18,11 +18,11 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part1Examples()
         {
-            Assert.AreEqual(true, isNice("ugknbfddgicrmopn"));
-            Assert.AreEqual(true, isNice("aaa"));
-            Assert.AreEqual(false, isNice("jchzalrnumimnmhp"));
-            Assert.AreEqual(false, isNice("haegwjzuvuyypxyu"));
-            Assert.AreEqual(false, isNice("dvszwmarrgswjxmb"));
+            Assert.IsTrue(isNice("ugknbfddgicrmopn"));
+            Assert.IsTrue(isNice("aaa"));
+            Assert.IsFalse(isNice("jchzalrnumimnmhp"));
+            Assert.IsFalse(isNice("haegwjzuvuyypxyu"));
+            Assert.IsFalse(isNice("dvszwmarrgswjxmb"));
         }
 
         private bool isNice(string v)

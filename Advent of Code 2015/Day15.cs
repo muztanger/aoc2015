@@ -27,7 +27,7 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3
             var ingredients = new List<int[]>();
             extract(ingredients, exampleInput);
             int N = 2;
-            Assert.AreEqual(N, ingredients.Count);
+            Assert.HasCount(N, ingredients);
             int psMax = int.MinValue;
             for (int k1 = 1; k1 <= 99; k1++)
             {
@@ -78,7 +78,7 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3
             var ingredients = new List<int[]>();
             extract(ingredients, inputString);
             int N = 4;
-            Assert.AreEqual(N, ingredients.Count);
+            Assert.HasCount(N, ingredients);
             int psMax = int.MinValue;
 
             for (int k1 = 1; k1 <= 97; k1++)
@@ -114,7 +114,7 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3
             var ingredients = new List<int[]>();
             extract(ingredients, exampleInput);
             int N = 2;
-            Assert.AreEqual(N, ingredients.Count);
+            Assert.HasCount(N, ingredients);
             int psMax = int.MinValue;
             for (int k1 = 1; k1 <= 99; k1++)
             {
@@ -146,7 +146,7 @@ Cinnamon: capacity 2, durability 3, flavor -2, texture -1, calories 3
             var ingredients = new List<int[]>();
             extract(ingredients, inputString);
             int N = 4;
-            Assert.AreEqual(N, ingredients.Count);
+            Assert.HasCount(N, ingredients);
             int psMax = int.MinValue;
 
             for (int k1 = 1; k1 <= 97; k1++)

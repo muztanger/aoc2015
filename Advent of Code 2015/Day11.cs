@@ -164,7 +164,5 @@ namespace Advent_of_Code_2015
             }
             Console.WriteLine(password);
         }
-
-        static string inputString = @"";
         }
     }

@@ -68,7 +68,5 @@ namespace Advent_of_Code_2015
             }
             Console.WriteLine(result.Length);
         }
-
-        static string inputString = @"";
         }
     }
