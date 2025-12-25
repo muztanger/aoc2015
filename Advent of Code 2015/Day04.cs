@@ -65,7 +65,9 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part1()
         {
-            Console.WriteLine(fivezeros(inputString));
+            int result = fivezeros(inputString);
+            Assert.AreEqual(282749, result);
+            Console.WriteLine(result);
         }
 
         private int sixzeros(string key)
@@ -78,7 +80,6 @@ namespace Advent_of_Code_2015
                 while (!found)
                 {
                     hash = GetMd5Hash(md5Hash, $"{key}{i}");
-                    //Console.WriteLine(hash);
                     found = hash.StartsWith("000000");
                     if (found)
                     {
@@ -94,7 +95,9 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part2()
         {
-            Console.WriteLine(sixzeros(inputString));
+            int result = sixzeros(inputString);
+            Assert.AreEqual(9962624, result);
+            Console.WriteLine(result);
         }
     }
 }

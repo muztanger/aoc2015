@@ -73,6 +73,7 @@ namespace Advent_of_Code_2015
         {
             var (row, col) = ParseInput(inputString);
             long code = GetCodeAt(row, col);
+            Assert.AreEqual(2650453L, code);
             Console.WriteLine($"Part 1: Code at row {row}, column {col} = {code}");
         }
 

@@ -94,7 +94,9 @@ namespace Advent_of_Code_2015
                     }
                 }
             }
-            Console.WriteLine("Matches: " + String.Join(", ", matches));
+            string result = "Matches: " + String.Join(", ", matches);
+            Assert.AreEqual("Matches: 213", result);
+            Console.WriteLine(result);
         }
 
 
@@ -177,8 +179,9 @@ namespace Advent_of_Code_2015
                     }
                 }
             }
-            Console.WriteLine("Matches: " + String.Join(", ", matches));
-
+            string result = "Matches: " + String.Join(", ", matches);
+            Assert.AreEqual("Matches: 323", result);
+            Console.WriteLine(result);
         }
 
 

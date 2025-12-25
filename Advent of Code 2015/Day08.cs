@@ -116,6 +116,7 @@ namespace Advent_of_Code_2015
                 }
             }
 
+            Assert.AreEqual(1342, total);
             Console.WriteLine(total);
         }
 
@@ -144,8 +145,7 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part2Examples()
         {
-            //Console.WriteLine(path);
-            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day08_part1_examples.txt")))
+            using (var reader = new StringReader(InputLoader.ReadAllText("day08_part1_examples.txt")))
             {
                 /*
                     "" encodes to "\"\"", an increase from 2 characters to 6.
@@ -186,6 +186,7 @@ namespace Advent_of_Code_2015
                 }
             }
 
+            Assert.AreEqual(2074, total);
             Console.WriteLine(total);
         }
 

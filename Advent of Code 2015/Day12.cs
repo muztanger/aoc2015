@@ -45,7 +45,9 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part1()
         {
-            Console.WriteLine(jsonSum(inputString));
+            int result = jsonSum(inputString);
+            Assert.AreEqual(119433, result);
+            Console.WriteLine(result);
         }
 
         [TestMethod]
@@ -55,10 +57,9 @@ namespace Advent_of_Code_2015
             int sum = 0;
             foreach (var e in a)
             {
-                //Console.WriteLine(e);
                 add(e, ref sum);
             }
-            // incorrect: 191164
+            Assert.AreEqual(68466, sum);
             Console.WriteLine(sum);
         }
 

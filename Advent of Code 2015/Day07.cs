@@ -304,13 +304,11 @@ NOT y -> i";
         {
             using (StringReader reader = new StringReader(inputString))
             {
-
                 Dictionary<string, Wire> wires = parseInstructions(reader);
-                Console.WriteLine($"a -> {wires["a"].Eval()}");
-                
+                uint result = wires["a"].Eval();
+                Assert.AreEqual(16076u, result);
+                Console.WriteLine($"a -> {result}");
             }
-  
-            //Console.WriteLine(sum);
         }
 
        
@@ -320,11 +318,10 @@ NOT y -> i";
             using (StringReader reader = new StringReader(inputStringPart2))
             {
                 Dictionary<string, Wire> wires = parseInstructions(reader);
-                Console.WriteLine($"a -> {wires["a"].Eval()}");
-
+                uint result = wires["a"].Eval();
+                Assert.AreEqual(2797u, result);
+                Console.WriteLine($"a -> {result}");
             }
-
-            //Console.WriteLine(sum);
         }
 
         private static readonly string inputString = InputLoader.ReadAllText("day07.txt");
@@ -668,6 +665,7 @@ NOT p -> q
 k AND m -> n
 as RSHIFT 2 -> at
 ";
+
 
     }
 }

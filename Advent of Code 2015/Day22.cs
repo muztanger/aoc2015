@@ -147,6 +147,7 @@ namespace Advent_of_Code_2015
         {
             var (bossHP, bossDamage) = ParseBoss(inputString);
             int minMana = FindMinMana(bossHP, bossDamage, false);
+            Assert.AreEqual(900, minMana);
             Console.WriteLine($"Part 1: Minimum mana to win = {minMana}");
         }
 
@@ -164,6 +165,7 @@ namespace Advent_of_Code_2015
         {
             var (bossHP, bossDamage) = ParseBoss(inputString);
             int minMana = FindMinMana(bossHP, bossDamage, true);
+            Assert.AreEqual(1216, minMana);
             Console.WriteLine($"Part 2: Minimum mana on Hard mode = {minMana}");
         }
     }

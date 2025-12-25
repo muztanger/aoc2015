@@ -97,6 +97,7 @@ namespace Advent_of_Code_2015
         {
             var packages = ParseInput(inputString);
             long qe = FindMinQuantumEntanglement(packages, 3);
+            Assert.AreEqual(11846773891L, qe);
             Console.WriteLine($"Part 1: Quantum Entanglement = {qe}");
         }
 
@@ -114,6 +115,7 @@ namespace Advent_of_Code_2015
         {
             var packages = ParseInput(inputString);
             long qe = FindMinQuantumEntanglement(packages, 4);
+            Assert.AreEqual(80393059L, qe);
             Console.WriteLine($"Part 2: Quantum Entanglement = {qe}");
         }
     }

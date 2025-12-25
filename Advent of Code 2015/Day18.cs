@@ -99,20 +99,16 @@ namespace Advent_of_Code_2015
                     }
                 }
             }
-            foreach (var grid in mGrids)
+            int result = 0;
+            for (int i = 0; i < 100; i++)
             {
-                int count = 0;
-                for (int i = 0; i < 100; i++)
+                for (int j = 0; j < 100; j++)
                 {
-                    for (int j = 0; j < 100; j++)
-                    {
-                        if (grid[i, j]) count++;
-                    }
+                    if (mGrid1[i, j]) result++;
                 }
-                // 1061 is correct
-                Console.WriteLine(count);
             }
-        
+            Assert.AreEqual(1061, result);
+            Console.WriteLine(result);
         }
 
         [TestMethod]
@@ -189,25 +185,22 @@ namespace Advent_of_Code_2015
                 }
             }
 
+            int result = 0;
+            mGrid1[0, 0] = true; 
+            mGrid1[0, 99] = true;
+            mGrid1[99, 0] = true;
+            mGrid1[99, 99] = true;
+            for (int i = 0; i < 100; i++)
             {
-                int count = 0;
-                mGrid1[0, 0] = true; 
-                mGrid1[0, 99] = true;
-                mGrid1[99, 0] = true;
-                mGrid1[99, 99] = true;
-                for (int i = 0; i < 100; i++)
+                for (int j = 0; j < 100; j++)
                 {
-                    for (int j = 0; j < 100; j++)
-                    {
-                        if (mGrid1[i, j]) count++;
-                    }
+                    if (mGrid1[i, j]) result++;
                 }
-                // 1061 is correct
-                Console.WriteLine(count);
             }
-            
+            Assert.AreEqual(1006, result);
+            Console.WriteLine(result);
         }
-
+        
         private static readonly string inputString = InputLoader.ReadAllText("day18.txt");
 }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -71,6 +71,7 @@ namespace Advent_of_Code_2015
         {
             const int N = 150;
             int count = waysOfN(buckets, N);
+            Assert.AreEqual(654, count);
             Console.WriteLine(count);
         }
 
@@ -104,8 +105,9 @@ namespace Advent_of_Code_2015
                 }
             }
             int min = count.Select(x => x.Key).Min();
-            
-            Console.WriteLine(count[min]);
+            int result = count[min];
+            Assert.AreEqual(57, result);
+            Console.WriteLine(result);
         }
     }
 }

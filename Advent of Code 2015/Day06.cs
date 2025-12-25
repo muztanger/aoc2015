@@ -99,7 +99,6 @@ namespace Advent_of_Code_2015
                         var pos1 = split[1].Split(',').Select(x => int.Parse(x)).ToArray<int>();
                         var pos2 = split[3].Split(',').Select(x => int.Parse(x)).ToArray<int>();
                         doAction(pos1[0], pos1[1], pos2[0], pos2[1], toggle);
-
                     }
                     else if (line.StartsWith("turn off "))
                     {
@@ -119,6 +118,7 @@ namespace Advent_of_Code_2015
                     if (mGrid[i, j]) sum++;
                 }
             }
+            Assert.AreEqual(400410, sum);
             Console.WriteLine(sum);
         }
 
@@ -186,8 +186,7 @@ namespace Advent_of_Code_2015
                     sum += mGrid2[i, j];
                 }
             }
-            // 16325717 wrong
-            // 17325717 wrong
+            Assert.AreEqual(15343601, sum);
             Console.WriteLine(sum);
         }
 

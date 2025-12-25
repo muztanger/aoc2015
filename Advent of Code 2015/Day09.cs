@@ -87,6 +87,7 @@ Dublin to Belfast = 141";
             }
 
             int min = shortestPath();
+            Assert.AreEqual(207, min);
             Console.WriteLine(min);
         }
 
@@ -123,10 +124,10 @@ Dublin to Belfast = 141";
                     last = city;
                 }
                 max = Math.Max(max, sum);
-                //Console.WriteLine($"{String.Join(", ", vals)}: {sum}");
                 return false;
             });
 
+            Assert.AreEqual(804, max);
             Console.WriteLine(max);
         }
 

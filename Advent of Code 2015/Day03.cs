@@ -54,7 +54,9 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part1()
         {
-            Console.WriteLine(move(inputString));
+            int result = move(inputString);
+            Assert.AreEqual(2565, result);
+            Console.WriteLine(result);
         }
 
         [TestMethod]
@@ -112,7 +114,9 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part2()
         {
-            Console.WriteLine(robo(inputString));
+            int result = robo(inputString);
+            Assert.AreEqual(2639, result);
+            Console.WriteLine(result);
         }
     }
 }

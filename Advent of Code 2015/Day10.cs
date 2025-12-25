@@ -54,6 +54,7 @@ namespace Advent_of_Code_2015
             {
                 result = lookAndSay(result);
             }
+            Assert.AreEqual(360154, result.Length);
             Console.WriteLine(result.Length);
         }
 
@@ -66,6 +67,7 @@ namespace Advent_of_Code_2015
             {
                 result = lookAndSay(result);
             }
+            Assert.AreEqual(5103798, result.Length);
             Console.WriteLine(result.Length);
         }
         }

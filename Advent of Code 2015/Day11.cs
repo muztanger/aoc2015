@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -21,10 +21,6 @@ namespace Advent_of_Code_2015
                 Passwords may not contain the letters i, o, or l, as these letters can be mistaken for other characters and are therefore confusing.
                 Passwords must contain at least two different, non-overlapping pairs of letters, like aa, bb, or zz.
             */
-
-            //Assert.AreEqual(3, strait);
-            //Assert.IsTrue(tabu);
-            //Assert.AreEqual(2, pairs.Count);
 
             /*
                 For example:
@@ -49,7 +45,6 @@ namespace Advent_of_Code_2015
             while (!meetsRequirements(password))
             {
                 password = addPassword(password);
-                //Console.WriteLine(password);
                 count++;
                 if (count > 27 * 27 * 27 * 27) throw new Exception("stop");
             }
@@ -60,13 +55,10 @@ namespace Advent_of_Code_2015
             while (!meetsRequirements(password))
             {
                 password = addPassword(password);
-                //Console.WriteLine(password);
                 count++;
                 if (count > 27 * 27 * 27 * 27 * 27 * 27) throw new Exception("stop");
             }
             Assert.AreEqual("ghjaabcc", password);
-
-            //Console.WriteLine($"nextPassword={password}");
         }
 
         private static string addPassword(string password)
@@ -85,7 +77,6 @@ namespace Advent_of_Code_2015
 
         private static bool meetsRequirements(string password)
         {
-            //var password = "abbceffg";
             int strait = 1;
             int repeat = 0;
             char last = 'A';
@@ -139,30 +130,30 @@ namespace Advent_of_Code_2015
             while (!meetsRequirements(password))
             {
                 password = addPassword(password);
-                //Console.WriteLine(password);
                 count++;
                 if (count % (27 * 27 * 27) == 0) Console.WriteLine($" now on : {password}");
             }
-            Console.WriteLine(password);
+            string result = password;
+            Assert.AreEqual("cqjxxyzz", result);
+            Console.WriteLine(result);
         }
 
 
         [TestMethod]
         public void Part2()
         {
-            // not correct: cqjxxyzz
-            // not correct: cqjxxyzz
-            // cqjxxyzz
+            // Start from the password after Part1's answer
             string password = "cqjxxzaa";
             int count = 0;
             while (!meetsRequirements(password))
             {
                 password = addPassword(password);
-                //Console.WriteLine(password);
                 count++;
                 if (count % (27 * 27 * 27) == 0) Console.WriteLine($" now on : {password}");
             }
-            Console.WriteLine(password);
-        }
+            string result = password;
+            Assert.AreEqual("cqkaabcc", result);
+            Console.WriteLine(result);
         }
     }
+}

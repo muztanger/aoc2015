@@ -43,6 +43,7 @@ namespace Advent_of_Code_2015
                     sum += paper(Int32.Parse(split[0]), Int32.Parse(split[1]), Int32.Parse(split[2]));
                 }
             }
+            Assert.AreEqual(1586300, sum);
             Console.WriteLine(sum);
         }
 
@@ -73,6 +74,7 @@ namespace Advent_of_Code_2015
                     sum += ribbon(Int32.Parse(split[0]), Int32.Parse(split[1]), Int32.Parse(split[2]));
                 }
             }
+            Assert.AreEqual(3737498, sum);
             Console.WriteLine(sum);
         }
 

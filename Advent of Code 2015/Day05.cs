@@ -60,6 +60,7 @@ namespace Advent_of_Code_2015
                     if (isNice(line)) sum++;
                 }
             }
+            Assert.AreEqual(238, sum);
             Console.WriteLine(sum);
         }
 
@@ -86,6 +87,7 @@ namespace Advent_of_Code_2015
                     if (isNice2(line)) sum++;
                 }
             }
+            Assert.AreEqual(69, sum);
             Console.WriteLine(sum);
         }
 

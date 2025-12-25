@@ -108,6 +108,7 @@ inc a";
         {
             var computer = new Computer(inputString);
             computer.Execute();
+            Assert.AreEqual(184, (int)computer.B);
             Console.WriteLine($"Part 1: Register b = {computer.B}");
         }
 
@@ -124,6 +125,7 @@ inc a";
         {
             var computer = new Computer(inputString, initialA: 1);
             computer.Execute();
+            Assert.AreEqual(231, (int)computer.B);
             Console.WriteLine($"Part 2: Register b = {computer.B}");
         }
     }

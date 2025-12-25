@@ -97,6 +97,7 @@ David would gain 41 happiness units by sitting next to Carol.
             using (StringReader reader = new StringReader(inputString))
             {
                 int max = maxScore(guests, happiness, reader);
+                Assert.AreEqual(664, max);
                 Console.WriteLine(max);
             }
         }
@@ -109,6 +110,7 @@ David would gain 41 happiness units by sitting next to Carol.
             using (StringReader reader = new StringReader(inputString))
             {
                 int max = maxScore(guests, happiness, reader, true);
+                Assert.AreEqual(640, max);
                 Console.WriteLine(max);
             }
         }

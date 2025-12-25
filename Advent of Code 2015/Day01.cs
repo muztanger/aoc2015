@@ -25,7 +25,9 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part1()
         {
-            Console.WriteLine(walk(inputString));
+            int result = walk(inputString);
+            Assert.AreEqual(232, result);
+            Console.WriteLine(result);
         }
 
         [TestMethod]
@@ -38,7 +40,9 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part2()
         {
-            Console.WriteLine(basement(inputString));
+            int result = basement(inputString);
+            Assert.AreEqual(1783, result);
+            Console.WriteLine(result);
         }
 
         private int basement(string str)
