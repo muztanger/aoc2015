@@ -113,5 +113,36 @@ namespace Advent_of_Code_2015
             }
             Assert.AreEqual(786240, firstNumber);
         }
+
+        [TestMethod]
+        public void Part2()
+        {
+            int target = 34000000;
+            int maxHouses = 1000000;
+            long[] houses = new long[maxHouses];
+            
+            // Each elf delivers to only 50 houses
+            for (int elf = 1; elf < maxHouses; elf++)
+            {
+                int visitCount = 0;
+                for (int house = elf; house < maxHouses && visitCount < 50; house += elf)
+                {
+                    houses[house] += elf * 11;
+                    visitCount++;
+                }
+            }
+            
+            long firstNumber = -1;
+            for (int i = 1; i < maxHouses; i++)
+            {
+                if (houses[i] >= target)
+                {
+                    firstNumber = i;
+                    break;
+                }
+            }
+            
+            Assert.AreEqual(831600, firstNumber);
+        }
     }
 }
