@@ -81,7 +81,7 @@ namespace Advent_of_Code_2015
         {
             string path = Assembly.GetAssembly(typeof(Day08)).Location;
             //Console.WriteLine(path);
-            using (StreamReader reader = new StreamReader(Path.Combine(path, "day08_part1_examples.txt")))
+            using (var reader = new StringReader(InputLoader.ReadAllText("day08_part1_examples.txt")))
             {
                 string line;
                 line = reader.ReadLine();
@@ -106,7 +106,7 @@ namespace Advent_of_Code_2015
         public void Part1()
         {
             int total = 0;
-            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day08_input.txt")))
+            using (var reader = new StringReader(InputLoader.ReadAllText("day08.txt")))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
@@ -176,7 +176,7 @@ namespace Advent_of_Code_2015
         public void Part2()
         {
             int total = 0;
-            using (StreamReader reader = new StreamReader(Path.Combine(CodePath, "day08_input.txt")))
+            using (var reader = new StringReader(InputLoader.ReadAllText("day08.txt")))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
