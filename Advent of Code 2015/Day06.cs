@@ -11,13 +11,21 @@ namespace Advent_of_Code_2015
     [TestClass]
     public class Day06
     {
-
         private bool[,] mGrid = new bool[1000,1000];
+        private int[,] mGrid2 = new int[1000, 1000];
 
-        public Day06()
+        [TestInitialize]
+        public void Initialize()
         {
-            doAction(0, 0, 999, 999, turnOff);
-            doAction(0, 0, 999, 999, zero);
+            // Reset grids before each test
+            for (int i = 0; i < 1000; i++)
+            {
+                for (int j = 0; j < 1000; j++)
+                {
+                    mGrid[i, j] = false;
+                    mGrid2[i, j] = 0;
+                }
+            }
         }
 
         private void zero(int x, int y)
@@ -41,8 +49,8 @@ namespace Advent_of_Code_2015
 
         private void doAction(int x1, int y1, int x2, int y2, Action<int, int> action)
         {
-            Assert.IsLessThanOrEqualTo(x1, x2);
-            Assert.IsLessThanOrEqualTo(y1, y2);
+            Assert.IsTrue(x1 <= x2, $"x1 ({x1}) should be <= x2 ({x2})");
+            Assert.IsTrue(y1 <= y2, $"y1 ({y1}) should be <= y2 ({y2})");
             for (int x = x1; x <= x2; x++)
             {
                 for (int y = y1; y <= y2; y++)
@@ -114,7 +122,6 @@ namespace Advent_of_Code_2015
             Console.WriteLine(sum);
         }
 
-        private int[,] mGrid2 = new int[1000, 1000];
         private void turnOn2(int x, int y)
         {
             mGrid2[x, y]++;
@@ -185,5 +192,5 @@ namespace Advent_of_Code_2015
         }
 
         private static readonly string inputString = InputLoader.ReadAllText("day06.txt");
-}
+    }
 }
