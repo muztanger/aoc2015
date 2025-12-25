@@ -15,7 +15,7 @@ namespace Advent_of_Code_2015
         public async Task SetupDay()
         {
             // Change this to the day you want to setup
-            int day = 21;
+            int day = 25;
             
             await AocSetup.SetupDayAsync(day);
         }
