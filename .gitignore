@@ -3,6 +3,10 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Advent of Code personal inputs (do not commit)
+Advent of Code 2015/Inputs/
+*_input.txt
+
 # User-specific files
 *.rsuser
 *.suo

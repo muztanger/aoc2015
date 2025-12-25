@@ -10,7 +10,7 @@ namespace Advent_of_Code_2015
     [TestClass]
     public class Day04
     {
-
+        private static readonly string inputString = InputLoader.ReadAllText("day04.txt");
 
         [TestMethod]
         public void Part1Examples()
@@ -96,7 +96,5 @@ namespace Advent_of_Code_2015
         {
             Console.WriteLine(sixzeros(inputString));
         }
-
-        static string inputString = @"yzbqklnj";
     }
 }
