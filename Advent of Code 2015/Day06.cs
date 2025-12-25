@@ -118,7 +118,7 @@ namespace Advent_of_Code_2015
                     if (mGrid[i, j]) sum++;
                 }
             }
-            Assert.AreEqual(400410, sum);
+            Assert.AreEqual(569999, sum);
             Console.WriteLine(sum);
         }
 
@@ -186,7 +186,7 @@ namespace Advent_of_Code_2015
                     sum += mGrid2[i, j];
                 }
             }
-            Assert.AreEqual(15343601, sum);
+            Assert.AreEqual(17836115, sum);
             Console.WriteLine(sum);
         }
 

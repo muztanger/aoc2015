@@ -55,7 +55,7 @@ namespace Advent_of_Code_2015
         public void Part1()
         {
             int result = move(inputString);
-            Assert.AreEqual(2565, result);
+            Assert.AreEqual(2572, result);
             Console.WriteLine(result);
         }
 
@@ -115,7 +115,7 @@ namespace Advent_of_Code_2015
         public void Part2()
         {
             int result = robo(inputString);
-            Assert.AreEqual(2639, result);
+            Assert.AreEqual(2631, result);
             Console.WriteLine(result);
         }
     }

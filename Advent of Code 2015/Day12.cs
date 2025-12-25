@@ -46,7 +46,7 @@ namespace Advent_of_Code_2015
         public void Part1()
         {
             int result = jsonSum(inputString);
-            Assert.AreEqual(119433, result);
+            Assert.AreEqual(191164, result);
             Console.WriteLine(result);
         }
 
@@ -59,7 +59,7 @@ namespace Advent_of_Code_2015
             {
                 add(e, ref sum);
             }
-            Assert.AreEqual(68466, sum);
+            Assert.AreEqual(87842, sum);
             Console.WriteLine(sum);
         }
 

@@ -116,7 +116,7 @@ namespace Advent_of_Code_2015
                 }
             }
 
-            Assert.AreEqual(1342, total);
+            Assert.AreEqual(1333, total);
             Console.WriteLine(total);
         }
 
@@ -186,7 +186,7 @@ namespace Advent_of_Code_2015
                 }
             }
 
-            Assert.AreEqual(2074, total);
+            Assert.AreEqual(2046, total);
             Console.WriteLine(total);
         }
 

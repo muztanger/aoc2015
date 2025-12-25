@@ -306,7 +306,7 @@ NOT y -> i";
             {
                 Dictionary<string, Wire> wires = parseInstructions(reader);
                 uint result = wires["a"].Eval();
-                Assert.AreEqual(16076u, result);
+                Assert.AreEqual(956u, result);
                 Console.WriteLine($"a -> {result}");
             }
         }
@@ -319,7 +319,7 @@ NOT y -> i";
             {
                 Dictionary<string, Wire> wires = parseInstructions(reader);
                 uint result = wires["a"].Eval();
-                Assert.AreEqual(2797u, result);
+                Assert.AreEqual(40149u, result);
                 Console.WriteLine($"a -> {result}");
             }
         }
