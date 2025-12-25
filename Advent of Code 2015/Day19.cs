@@ -36,11 +36,6 @@ namespace Advent_of_Code_2015
             mList.Select(x => x);
         }
 
-        //public IEnumerable<char> Select(Func<char, T> selector)
-        //{
-        //    return mList.Select(selector);
-        //}
-
         public override string ToString()
         {
             var result = new StringBuilder();
@@ -50,17 +45,11 @@ namespace Advent_of_Code_2015
             }
             return result.ToString();
         }
-
-
-        //public static IEnumerable<TResult> Select<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector);
-        //{
-        //}
     }
 
     [TestClass]
     public class Day19
     {
-
         [TestMethod]
         public void ExamplePart1()
         {
@@ -148,6 +137,12 @@ HOH
             }
         }
 
+        private static List<string> Tokenize(string molecule)
+        {
+            var matches = Regex.Matches(molecule, "[A-Z][a-z]?");
+            return matches.Cast<Match>().Select(m => m.Value).ToList();
+        }
+
         [TestMethod]
         public void Part1()
         {
@@ -156,12 +151,6 @@ HOH
             string toReplace = null;
             parse(inputString, out replacements, out replacementLengths, out toReplace);
 
-            //Console.WriteLine("replacements:");
-            //foreach (var kv in replacements)
-            //{
-            //    Console.WriteLine($"   {kv.Key}: {String.Join(", ", kv.Value)}");
-            //}
-
             int maxLength = replacementLengths.Max();
             var latest = new ForgetfullList(maxLength);
             var result = new HashSet<string>();
@@ -169,11 +158,9 @@ HOH
             {
                 latest.Add(toReplace[i]);
                 var latestString = latest.ToString();
-                //Console.WriteLine($"latestString={latestString}");
                 for (int len = 1; len <= latestString.Length; len++)
                 {
                     var current = latestString.Substring(latestString.Length - len, len);
-                    //Console.WriteLine($"current={current}");
                     if (replacements.ContainsKey(current))
                     {
                         foreach (var replacement in replacements[current])
@@ -184,7 +171,6 @@ HOH
                             {
                                 postfix = toReplace.Substring(i + 1);
                             }
-                            //Console.WriteLine($"Add: {prefix}_{replacement}_{postfix}");
                             result.Add(prefix + replacement + postfix);
                         }
                     }
@@ -197,7 +183,20 @@ HOH
         [TestMethod]
         public void Part2()
         {
+            Dictionary<string, List<string>> replacements;
+            HashSet<int> replacementLengths;
+            string toReplace;
+            parse(inputString, out replacements, out replacementLengths, out toReplace);
 
+            var tokens = Tokenize(toReplace);
+            int numTokens = tokens.Count;
+            int numRn = tokens.Count(t => t == "Rn");
+            int numAr = tokens.Count(t => t == "Ar");
+            int numY = tokens.Count(t => t == "Y");
+
+            int steps = numTokens - numRn - numAr - 2 * numY - 1;
+
+            Assert.AreEqual(207, steps);
         }
 
         static string inputString = @"Al => ThF
