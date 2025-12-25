@@ -75,7 +75,7 @@ namespace Advent_of_Code_2015
         public void Part1()
         {
             int result = move(inputString);
-            Assert.AreEqual(1243, result); // TODO: Verify input file - expected was 2572 but input produces 1243
+            Assert.AreEqual(2572, result);
             Console.WriteLine(result);
         }
 
