@@ -67,7 +67,9 @@ namespace Advent_of_Code_2015
 
         private static void SaveInput(int day, string input)
         {
-            string inputsDir = Path.Combine(AppContext.BaseDirectory, "Inputs");
+            // Get the project source directory
+            string projectDir = GetProjectDirectory();
+            string inputsDir = Path.Combine(projectDir, "Inputs");
             Directory.CreateDirectory(inputsDir);
 
             string fileName = $"day{day:D2}.txt";
@@ -130,51 +132,52 @@ namespace Advent_of_Code_2015
 
         private static string GenerateTestClassTemplate(int day, string className)
         {
-            return $@"using System;
+            return $$"""
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Advent_of_Code_2015
-{{
+{
     [TestClass]
-    public class {className}
-    {{
-        private static readonly string inputString = InputLoader.ReadAllText(""day{day:D2}.txt"");
+    public class {{className}}
+    {
+        private static readonly string inputString = InputLoader.ReadAllText("day{{day:D2}}.txt");
 
-        static string exampleInput = @"""";
+        static string exampleInput = @"";
 
         [TestMethod]
         public void Part1Examples()
-        {{
+        {
             // TODO: Add example tests
-            Assert.Fail(""Not implemented"");
-        }}
+            Assert.Fail("Not implemented");
+        }
 
         [TestMethod]
         public void Part1()
-        {{
+        {
             // TODO: Implement Part 1
-            Console.WriteLine(""Part 1: Not implemented"");
-        }}
+            Console.WriteLine("Part 1: Not implemented");
+        }
 
         [TestMethod]
         public void Part2Examples()
-        {{
+        {
             // TODO: Add example tests
-            Assert.Fail(""Not implemented"");
-        }}
+            Assert.Fail("Not implemented");
+        }
 
         [TestMethod]
         public void Part2()
-        {{
+        {
             // TODO: Implement Part 2
-            Console.WriteLine(""Part 2: Not implemented"");
-        }}
-    }}
-}}
-";
+            Console.WriteLine("Part 2: Not implemented");
+        }
+    }
+}
+""";
         }
     }
 }
