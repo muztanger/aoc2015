@@ -12,12 +12,12 @@ namespace Advent_of_Code_2015
     public class SetupDayTest
     {
         [TestMethod]
-        public async Task SetupDay()
+        public async Task SetupDays()
         {
-            // Change this to the day you want to setup
-            int day = 25;
-            
-            await AocSetup.SetupDayAsync(day);
+            for (int day = 1; day <= 25; day++)
+            {
+                await AocSetup.SetupDayAsync(day);
+            }
         }
     }
 }

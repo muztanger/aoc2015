@@ -20,8 +20,6 @@ namespace Advent_of_Code_2015
     {
         private static readonly string inputString = InputLoader.ReadAllText("day25.txt");
 
-        static string exampleInput = @"To continue, please consult the code grid in the manual.  Enter the code at row 4, column 3.";
-
         static (int row, int col) ParseInput(string input)
         {
             var match = Regex.Match(input, @"row (\d+), column (\d+)");

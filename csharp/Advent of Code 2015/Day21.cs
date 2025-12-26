@@ -18,10 +18,6 @@ namespace Advent_of_Code_2015
     {
         private static readonly string inputString = InputLoader.ReadAllText("day21.txt");
 
-        static string exampleInput = @"Hit Points: 12
-Damage: 7
-Armor: 2";
-
         record Item(string Name, int Cost, int Damage, int Armor);
         record Character(int HitPoints, int Damage, int Armor);
 

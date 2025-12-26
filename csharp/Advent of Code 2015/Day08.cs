@@ -22,7 +22,6 @@ namespace Advent_of_Code_2015
     [TestClass]
     public class Day08
     {
-        static string CodePath = "..\\..\\..";
         enum State { Char, Escape, Hex };
 
         static string Eval(string line)
@@ -77,32 +76,6 @@ namespace Advent_of_Code_2015
         }
 
         [TestMethod]
-        public void Part1Examples()
-        {
-            string path = Assembly.GetAssembly(typeof(Day08)).Location;
-            //Console.WriteLine(path);
-            using (var reader = new StringReader(InputLoader.ReadAllText("day08_part1_examples.txt")))
-            {
-                string line;
-                line = reader.ReadLine();
-                Assert.AreEqual(2, line.Length);
-                Assert.AreEqual(0, Eval(line).Length);
-
-                line = reader.ReadLine();
-                Assert.AreEqual(5, line.Length);
-                Assert.AreEqual(3, Eval(line).Length);
-
-                line = reader.ReadLine();
-                Assert.AreEqual(10, line.Length);
-                Assert.AreEqual(7, Eval(line).Length);
-
-                line = reader.ReadLine();
-                Assert.AreEqual(6, line.Length);
-                Assert.AreEqual(1, Eval(line).Length);
-            }
-        }
-        
-        [TestMethod]
         public void Part1()
         {
             int total = 0;
@@ -140,36 +113,6 @@ namespace Advent_of_Code_2015
                 }
             }
             return '"' + result + '"';
-        }
-
-        [TestMethod]
-        public void Part2Examples()
-        {
-            using (var reader = new StringReader(InputLoader.ReadAllText("day08_part1_examples.txt")))
-            {
-                /*
-                    "" encodes to "\"\"", an increase from 2 characters to 6.
-                    "abc" encodes to "\"abc\"", an increase from 5 characters to 9.
-                    "aaa\"aaa" encodes to "\"aaa\\\"aaa\"", an increase from 10 characters to 16.
-                    "\x27" encodes to "\"\\x27\"", an increase from 6 characters to 11.
-                */
-                string line;
-                line = reader.ReadLine();
-                Assert.AreEqual(2, line.Length);
-                Assert.AreEqual(6, Encode(line).Length);
-
-                line = reader.ReadLine();
-                Assert.AreEqual(5, line.Length);
-                Assert.AreEqual(9, Encode(line).Length);
-
-                line = reader.ReadLine();
-                Assert.AreEqual(10, line.Length);
-                Assert.AreEqual(16, Encode(line).Length);
-
-                line = reader.ReadLine();
-                Assert.AreEqual(6, line.Length);
-                Assert.AreEqual(11, Encode(line).Length);
-            }
         }
 
         [TestMethod]

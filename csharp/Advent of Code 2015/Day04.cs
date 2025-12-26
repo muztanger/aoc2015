@@ -16,11 +16,11 @@ namespace Advent_of_Code_2015
         public void Part1Examples()
         {
 
-            Assert.AreEqual(609043, fivezeros("abcdef"));
-            Assert.AreEqual(1048970, fivezeros("pqrstuv"));
+            Assert.AreEqual(609043, FiveZeros("abcdef"));
+            Assert.AreEqual(1048970, FiveZeros("pqrstuv"));
         }
 
-        private int fivezeros(string key)
+        private int FiveZeros(string key)
         {
             using (MD5 md5Hash = MD5.Create())
             {
@@ -65,7 +65,7 @@ namespace Advent_of_Code_2015
         [TestMethod]
         public void Part1()
         {
-            int result = fivezeros(inputString);
+            int result = FiveZeros(inputString);
             Assert.AreEqual(282749, result);
             Console.WriteLine(result);
         }

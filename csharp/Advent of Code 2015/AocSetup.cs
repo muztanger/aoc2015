@@ -74,7 +74,12 @@ namespace Advent_of_Code_2015
 
             string fileName = $"day{day:D2}.txt";
             string filePath = Path.Combine(inputsDir, fileName);
-
+            if (File.Exists(filePath))
+            {
+                Console.WriteLine($"Input file {fileName} already exists at {filePath}.");
+                return;
+            }
+            
             File.WriteAllText(filePath, input);
             Console.WriteLine($"Input saved to {filePath}");
         }

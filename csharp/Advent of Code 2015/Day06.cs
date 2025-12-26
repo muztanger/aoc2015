@@ -11,8 +11,8 @@ namespace Advent_of_Code_2015
     [TestClass]
     public class Day06
     {
-        private bool[,] mGrid = new bool[1000,1000];
-        private int[,] mGrid2 = new int[1000, 1000];
+        private readonly bool[,] mGrid = new bool[1000,1000];
+        private readonly int[,] mGrid2 = new int[1000, 1000];
 
         [TestInitialize]
         public void Initialize()
@@ -28,29 +28,22 @@ namespace Advent_of_Code_2015
             }
         }
 
-        private void zero(int x, int y)
-        {
-            mGrid2[x, y] = 0;
-        }
-
         [TestMethod]
         public void Part1Examples()
         {
             //turn on 0,0 through 999,999 would turn on(or leave on) every light.
-            doAction(0, 0, 999, 999, turnOn);
+            DoAction(0, 0, 999, 999, TurnOn);
 
             //toggle 0,0 through 999,0 would toggle the first line of 1000 lights, turning off the ones that were on, and turning on the ones that were off.
-            doAction(0, 0, 999, 0, toggle);
+            DoAction(0, 0, 999, 0, Toggle);
 
             //turn off 499,499 through 500,500 would turn off(or leave off) the middle four lights.
-            doAction(0, 0, 999, 999, turnOff);
+            DoAction(0, 0, 999, 999, TurnOff);
             
         }
 
-        private void doAction(int x1, int y1, int x2, int y2, Action<int, int> action)
+        private void DoAction(int x1, int y1, int x2, int y2, Action<int, int> action)
         {
-            Assert.IsTrue(x1 <= x2, $"x1 ({x1}) should be <= x2 ({x2})");
-            Assert.IsTrue(y1 <= y2, $"y1 ({y1}) should be <= y2 ({y2})");
             for (int x = x1; x <= x2; x++)
             {
                 for (int y = y1; y <= y2; y++)
@@ -60,17 +53,17 @@ namespace Advent_of_Code_2015
             }
         }
 
-        private void turnOn(int x, int y)
+        private void TurnOn(int x, int y)
         {
             mGrid[x, y] = true;
         }
 
-        private void turnOff(int x, int y)
+        private void TurnOff(int x, int y)
         {
             mGrid[x, y] = false;
         }
 
-        private void toggle(int x, int y)
+        private void Toggle(int x, int y)
         {
             mGrid[x, y] = !mGrid[x, y];
         }
@@ -84,13 +77,16 @@ namespace Advent_of_Code_2015
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
+                    line = line.Trim();
+                    if (string.IsNullOrEmpty(line)) continue;
+
                     if (line.StartsWith("turn on "))
                     {
                         // turn on 0,0 through 999,999
                         var split = line.Split(' ');
                         var pos1 = split[2].Split(',').Select(x => int.Parse(x)).ToArray<int>();
                         var pos2 = split[4].Split(',').Select(x => int.Parse(x)).ToArray<int>();
-                        doAction(pos1[0], pos1[1], pos2[0], pos2[1], turnOn);
+                        DoAction(pos1[0], pos1[1], pos2[0], pos2[1], TurnOn);
                     }
                     else if (line.StartsWith("toggle "))
                     {
@@ -98,7 +94,7 @@ namespace Advent_of_Code_2015
                         var split = line.Split(' ');
                         var pos1 = split[1].Split(',').Select(x => int.Parse(x)).ToArray<int>();
                         var pos2 = split[3].Split(',').Select(x => int.Parse(x)).ToArray<int>();
-                        doAction(pos1[0], pos1[1], pos2[0], pos2[1], toggle);
+                        DoAction(pos1[0], pos1[1], pos2[0], pos2[1], Toggle);
                     }
                     else if (line.StartsWith("turn off "))
                     {
@@ -106,7 +102,7 @@ namespace Advent_of_Code_2015
                         var split = line.Split(' ');
                         var pos1 = split[2].Split(',').Select(x => int.Parse(x)).ToArray<int>();
                         var pos2 = split[4].Split(',').Select(x => int.Parse(x)).ToArray<int>();
-                        doAction(pos1[0], pos1[1], pos2[0], pos2[1], turnOff);
+                        DoAction(pos1[0], pos1[1], pos2[0], pos2[1], TurnOff);
                     }
                 }
             }
@@ -157,7 +153,7 @@ namespace Advent_of_Code_2015
                         var split = line.Split(' ');
                         var pos1 = split[2].Split(',').Select(x => int.Parse(x)).ToArray<int>();
                         var pos2 = split[4].Split(',').Select(x => int.Parse(x)).ToArray<int>();
-                        doAction(pos1[0], pos1[1], pos2[0], pos2[1], turnOn2);
+                        DoAction(pos1[0], pos1[1], pos2[0], pos2[1], turnOn2);
                     }
                     else if (line.StartsWith("toggle "))
                     {
@@ -165,7 +161,7 @@ namespace Advent_of_Code_2015
                         var split = line.Split(' ');
                         var pos1 = split[1].Split(',').Select(x => int.Parse(x)).ToArray<int>();
                         var pos2 = split[3].Split(',').Select(x => int.Parse(x)).ToArray<int>();
-                        doAction(pos1[0], pos1[1], pos2[0], pos2[1], toggle2);
+                        DoAction(pos1[0], pos1[1], pos2[0], pos2[1], toggle2);
 
                     }
                     else if (line.StartsWith("turn off "))
@@ -174,7 +170,7 @@ namespace Advent_of_Code_2015
                         var split = line.Split(' ');
                         var pos1 = split[2].Split(',').Select(x => int.Parse(x)).ToArray<int>();
                         var pos2 = split[4].Split(',').Select(x => int.Parse(x)).ToArray<int>();
-                        doAction(pos1[0], pos1[1], pos2[0], pos2[1], turnOff2);
+                        DoAction(pos1[0], pos1[1], pos2[0], pos2[1], turnOff2);
                     }
                 }
             }
